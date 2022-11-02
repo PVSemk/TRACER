@@ -29,7 +29,7 @@ class Inference():
             self.model = nn.DataParallel(self.model).to(self.device)
 
         path = load_pretrained(f'TE-{args.arch}')
-        self.model.load_state_dict(path)
+        self.model.load_state_dict(path, map_location=self.device)
         print('###### pre-trained Model restored #####')
 
         te_img_folder = os.path.join(args.data_path, args.dataset)
